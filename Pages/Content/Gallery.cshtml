@@ -1,0 +1,87 @@
+﻿
+@page
+@model GalleryModel
+@{
+    ViewData["Title"] = "Gallery";
+}
+
+<h1>Minion Gallery</h1>
+<div class="gallery">
+    <a href="~/images/kevin.jpg" class="lightbox">
+        <img src="~/images/kevin.jpg" alt="Kevin" class="minion" />
+    </a>
+    <a href="~/images/stuart.jpg" class="lightbox">
+        <img src="~/images/stuart.jpg" alt="Stuart" class="minion" />
+    </a>
+    <a href="~/images/bob.jpg" class="lightbox">
+        <img src="~/images/bob.jpg" alt="Bob" class="minion" />
+    </a>
+    <a href="~/images/dave.jpg" class="lightbox">
+        <img src="~/images/dave.jpg" alt="Dave" class="minion" />
+    </a>
+    <a href="~/images/jerry.jpg" class="lightbox">
+        <img src="~/images/jerry.jpg" alt="Jerry" class="minion" />
+    </a>
+    <a href="~/images/tim.jpg" class="lightbox">
+        <img src="~/images/tim.jpg" alt="Tim" class="minion" />
+    </a>
+</div>
+
+<style>
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+        .gallery img {
+            max-width: 150px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+            .gallery img:hover {
+                transform: scale(1.05);
+            }
+</style>
+
+<script>document.addEventListener('DOMContentLoaded', function () {
+        const lightboxLinks = document.querySelectorAll('.lightbox');
+
+        lightboxLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const imgSrc = this.href;
+                const lightboxDiv = document.createElement('div');
+                lightboxDiv.classList.add('lightbox-overlay');
+                lightboxDiv.innerHTML = `<img src="${imgSrc}" alt="Minion" />`;
+                document.body.appendChild(lightboxDiv);
+
+                lightboxDiv.addEventListener('click', function () {
+                    document.body.removeChild(lightboxDiv);
+                });
+            });
+        });
+    });</script>
+
+<style>
+    .lightbox-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .lightbox-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+</style>

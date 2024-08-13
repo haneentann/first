@@ -1,0 +1,59 @@
+﻿@page
+@model first.Pages.Content.FamilyModel
+@{
+    ViewData["Title"] = "Family";
+}
+
+
+<h1>Meet the Minions</h1>
+<div class="minion-container">
+    <div class="minion">
+        <img src="~/images/kevin.jpg" alt="Kevin" class="minion" />
+        <h2>Kevin</h2>
+        <p>Kevin is the leader of the Minions. He's tall, has two eyes, and loves bananas.</p>
+    </div>
+    <div class="minion">
+        <img src="~/images/stuart.jpg" alt="Stuart" class="minion" />
+        <h2>Stuart</h2>
+        <p>Stuart is playful and funny. He loves playing guitar and making jokes.</p>
+    </div>
+    <div class="minion">
+        <img src="~/images/bob.jpg" alt="Bob" class="minion" />
+        <h2>Bob</h2>
+        <p>Bob is the smallest and cutest Minion. He loves teddy bears and is very innocent.</p>
+    </div>
+    <div class="minion">
+        <img src="~/images/dave.jpg" alt="Dave" class="minion" />
+        <h2>Dave</h2>
+        <p>Dave is intelligent and caring. He often takes on the role of a leader.</p>
+    </div>
+    <div class="minion">
+        <img src="~/images/jerry.jpg" alt="Jerry" class="minion" />
+        <h2>Jerry</h2>
+        <p>Jerry is cheerful and energetic. He loves to have fun and play around.</p>
+    </div>
+    <div class="minion">
+        <img src="~/images/tim.jpg" alt="Tim" class="minion" />
+        <h2>Tim</h2>
+        <p>Tim is a family man and very protective of his fellow Minions.</p>
+    </div>
+</div>
+
+<style>
+    .minion-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .minion {
+        text-align: center;
+        max-width: 200px;
+    }
+
+        .minion img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+</style>

@@ -1,0 +1,55 @@
+﻿@page
+@model FunFactsModel
+@{
+    ViewData["Title"] = "Fun Facts";
+}
+
+<h1>Minion Fun Facts</h1>
+
+<div class="fun-facts">
+    <h2>Did You Know?</h2>
+    <p id="fun-fact"></p>
+</div>
+
+<script>const funFacts = [
+        "Minions have been around since the beginning of time!",
+        "They love bananas more than anything else.",
+        "Each Minion has a unique look and personality.",
+        "Minions speak Minionese, a mix of different languages and gibberish.",
+        "They are incredibly loyal to their leader, Gru."
+    ];
+
+    let factIndex = 0;
+    const factElement = document.getElementById('fun-fact');
+
+    function showFunFact(index) {
+        factElement.textContent = funFacts[index];
+    }
+
+    setInterval(() => {
+        factIndex = (factIndex + 1) % funFacts.length;
+        showFunFact(factIndex);
+    }, 5000);
+
+    showFunFact(factIndex);</script>
+
+<style>
+    .fun-facts {
+        text-align: center;
+        margin: 20px auto;
+        max-width: 600px;
+    }
+
+        .fun-facts h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .fun-facts p {
+            font-size: 1.2em;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+</style>

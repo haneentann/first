@@ -1,0 +1,181 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+
+<div class="hero-section">
+    <h1>Welcome to Minion World!</h1>
+    <p>Your one-stop destination for all things Minions! Dive into the fun world of Minions, take quizzes, and learn more about your favorite characters!</p>
+    <img src="/images/minions-welcome.png" alt="Minions Welcome" class="hero-image" width="600">
+    <button id="fun-facts" onclick="location.href='Content/FunFacts'" class="btn-main">Fun Facts</button>
+</div>
+
+<div class="features-section">
+    <h2>Explore Minion World</h2>
+    <div class="feature" id="feature-quiz">
+        <img src="/images/quiz.png" alt="Quiz">
+        <h3>Quizzes</h3>
+        <p>Test your knowledge with fun Minion quizzes!</p>
+        <button onclick="location.href='Content/Quiz'" class="btn-main">Take a Quiz</button>
+    </div>
+    <div class="feature" id="feature-family">
+        <img src="/images/family.png" alt="Family">
+        <h3>Meet the Minions</h3>
+        <p>Get to know all the Minions by name!</p>
+        <button onclick="location.href='Content/Family'" class="btn-main">Meet the Family</button>
+    </div>
+</div>
+
+@*<div class="gallery-section">
+    <h2>Minion Gallery</h2>
+    <div class="gallery">
+        <img src="/images/minion1.png" alt="Minion 1">
+        <img src="/images/minion2.png" alt="Minion 2">
+        <img src="/images/minion3.png" alt="Minion 3">
+        <img src="/images/minion4.png" alt="Minion 4">
+    </div>
+</div>*@
+
+<script>document.addEventListener('DOMContentLoaded', function () {
+        const heroImage = document.querySelector('.hero-image');
+        const quizButton = document.getElementById('start-quiz');
+
+        // Add animation to hero image
+        heroImage.classList.add('animated');
+
+        // Add hover effect to quiz button
+        quizButton.addEventListener('mouseover', function () {
+            quizButton.style.backgroundColor = '#ffeb3b';
+            quizButton.style.color = '#333';
+        });
+
+        quizButton.addEventListener('mouseout', function () {
+            quizButton.style.backgroundColor = '#333';
+            quizButton.style.color = '#ffeb3b';
+        });
+    });</script>
+
+<style>
+    body {
+        background-color: #ffeb3b;
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .hero-section {
+        text-align: center;
+        background-color: #fff;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        margin: 20px;
+        position: relative;
+    }
+
+    .hero-section h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+    }
+
+    .hero-section p {
+        font-size: 1.5em;
+        margin-bottom: 30px;
+    }
+
+    .hero-section img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 30px;
+    }
+
+    .hero-section .btn-main {
+        background-color: #333;
+        color: #ffeb3b;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: 1.2em;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s ease;
+    }
+
+    .features-section {
+        text-align: center;
+        background-color: #fff;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        margin: 20px;
+    }
+
+    .features-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+
+    .features-section .feature {
+        display: inline-block;
+        width: 30%;
+        margin: 0 10px;
+        text-align: center;
+    }
+
+    .features-section .feature img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .features-section .feature h3 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+
+    .features-section .feature p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+
+    .gallery-section {
+        text-align: center;
+        background-color: #fff;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        margin: 20px;
+    }
+
+    .gallery-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+
+    .gallery-section .gallery {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .gallery-section .gallery img {
+        max-width: 200px;
+        height: auto;
+        margin: 10px;
+        border: 5px solid #333;
+        border-radius: 10px;
+    }
+
+    .animated {
+        animation: bounce 2s infinite;
+    }
+
+    @*@keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }*@
+</style>

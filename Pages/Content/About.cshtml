@@ -1,0 +1,140 @@
+﻿@page
+@model AboutModel
+@{
+    ViewData["Title"] = "About";
+}
+
+
+<h1>About Minion World</h1>
+<p>Minion World is a place where you can learn all about the lovable characters from the Minions movies. Dive into the world of Kevin, Stuart, Bob, and the rest of the gang!</p>
+
+<h2>Fun Facts</h2>
+<ul>
+    <li>The Minions speak a language called Minionese, which is a mix of various languages and gibberish.</li>
+    <li>There are over 10,400 Minions in the movies, each with a unique look and personality.</li>
+    <li>The creators of Minions drew inspiration from the Oompa-Loompas in Willy Wonka & the Chocolate Factory.</li>
+    <li>Minions are always ready for an adventure and love to have fun.</li>
+</ul>
+
+
+<style>
+    .minion-group {
+        display: block;
+        margin: 20px auto;
+        max-width: 80%;
+        border-radius: 10px;
+    }
+</style>
+
+
+
+@*home*@
+
+<div class="carousel">
+    <div class="carousel-images">
+        <img src="~/images/kevin.jpg" alt="Kevin" class="carousel-image" />
+        <img src="~/images/stuart.jpg" alt="Stuart" class="carousel-image" />
+        <img src="~/images/bob.jpg" alt="Bob" class="carousel-image" />
+    </div>
+    <div class="carousel-controls">
+        <button id="prev" class="carousel-btn">Previous</button>
+        <button id="next" class="carousel-btn">Next</button>
+    </div>
+</div>
+
+<script>document.addEventListener('DOMContentLoaded', function () {
+        const images = document.querySelectorAll('.carousel-image');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        document.getElementById('next').addEventListener('click', function () {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+
+        document.getElementById('prev').addEventListener('click', function () {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+
+        showImage(currentIndex);
+    });</script>
+
+<style>
+    .hero-section {
+        text-align: center;
+        background-color: #ffeb3b;
+        padding: 40px 20px;
+        border-bottom: 2px solid #333;
+    }
+
+        .hero-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+    .btn-main {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+    }
+
+        .btn-main:hover {
+            background-color: #555;
+        }
+
+    .carousel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px auto;
+        max-width: 600px;
+    }
+
+    .carousel-images {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+    }
+
+    .carousel-image {
+        width: 100%;
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .carousel-controls {
+        margin-top: 10px;
+    }
+
+    .carousel-btn {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .carousel-btn:hover {
+            background-color: #555;
+        }
+</style>
+
+

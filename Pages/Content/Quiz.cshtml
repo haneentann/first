@@ -1,0 +1,495 @@
+﻿
+@page
+@model QuizModel
+@{
+    ViewData["Title"] = "Quiz";
+}
+
+<h1>Minion Quizzes</h1>
+<p>Test your knowledge about the Minions!</p>
+
+
+@*<div class="quiz">
+        <h2>Minion Quiz</h2>
+        <p>Test your knowledge about the Minions!</p>
+        <button id="start-quiz" class="btn-main">Start Quiz</button>
+        <div id="quiz-content" style="display: none;">
+            <p>Question: What do Minions love to eat the most?</p>
+            <button class="quiz-option">Apples</button>
+            <button class="quiz-option">Bananas</button>
+            <button class="quiz-option">Carrots</button>
+            <p id="quiz-result"></p>
+        </div>
+    </div>
+
+    <script>document.getElementById('start-quiz').addEventListener('click', function () {
+            document.getElementById('quiz-content').style.display = 'block';
+        });
+
+        document.querySelectorAll('.quiz-option').forEach(button => {
+            button.addEventListener('click', function () {
+                const answer = this.textContent;
+                const resultElement = document.getElementById('quiz-result');
+                if (answer === 'Bananas') {
+                    resultElement.textContent = 'Correct! Minions love bananas!';
+                    resultElement.style.color = 'green';
+                } else {
+                    resultElement.textContent = 'Oops! Try again.';
+                    resultElement.style.color = 'red';
+                }
+            });
+        });</script>
+
+    <style>
+        .quiz {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+            .quiz h2 {
+                font-size: 1.8em;
+                margin-bottom: 10px;
+            }
+
+            .quiz p {
+                font-size: 1.2em;
+                margin-bottom: 20px;
+            }
+
+        .quiz-option {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+            .quiz-option:hover {
+                background-color: #555;
+            }
+
+        #quiz-result {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>*@
+
+
+
+
+
+
+<div id="quiz-section">
+    <div class="quiz" id="quiz1">
+        <h2>Level 1</h2>
+        <p id="quiz1-question"></p>
+        <button class="quiz-option" id="quiz1-option1"></button>
+        <button class="quiz-option" id="quiz1-option2"></button>
+        <button class="quiz-option" id="quiz1-option3"></button>
+        <p id="quiz1-result"></p>
+        <button id="quiz1-next-question" class="btn-main" style="display: none;">Next Question</button>
+    </div>
+
+    <div class="quiz" id="quiz2">
+        <h2>Level 2</h2>
+        <p id="quiz2-question"></p>
+        <button class="quiz-option" id="quiz2-option1"></button>
+        <button class="quiz-option" id="quiz2-option2"></button>
+        <button class="quiz-option" id="quiz2-option3"></button>
+        <p id="quiz2-result"></p>
+        <button id="quiz2-next-question" class="btn-main" style="display: none;">Next Question</button>
+    </div>
+</div>
+
+<script>document.addEventListener('DOMContentLoaded', function () {
+        const quiz1Questions = [
+            {
+                question: "What do Minions love to eat the most?",
+                options: ["Apples", "Bananas", "Carrots"],
+                answer: "Bananas"
+            },
+            {
+                question: "Who is the leader of the Minions?",
+                options: ["Kevin", "Stuart", "Bob"],
+                answer: "Kevin"
+            },
+            {
+                question: "Which Minion loves to play guitar?",
+                options: ["Kevin", "Stuart", "Dave"],
+                answer: "Stuart"
+            },
+            {
+                question: "Which Minion is the smallest and cutest?",
+                options: ["Kevin", "Bob", "Jerry"],
+                answer: "Bob"
+            }
+        ];
+
+        const quiz2Questions = [
+            {
+                question: "Who is Gru's assistant?",
+                options: ["Dr. Nefario", "Vector", "Scarlet Overkill"],
+                answer: "Dr. Nefario"
+            },
+            {
+                question: "What color are Minions?",
+                options: ["Yellow", "Green", "Blue"],
+                answer: "Yellow"
+            },
+            {
+                question: "What is the name of Gru's dog?",
+                options: ["Spike", "Kyle", "Fido"],
+                answer: "Kyle"
+            },
+            {
+                question: "What is Gru's profession?",
+                options: ["Scientist", "Supervillain", "Teacher"],
+                answer: "Supervillain"
+            }
+        ];
+
+        function setupQuiz(quizId, questions) {
+            let quizIndex = 0;
+            const quizQuestion = document.getElementById(`${quizId}-question`);
+            const quizOptions = document.querySelectorAll(`#${quizId} .quiz-option`);
+            const quizResult = document.getElementById(`${quizId}-result`);
+            const nextQuestionBtn = document.getElementById(`${quizId}-next-question`);
+
+            function showQuizQuestion(index) {
+                const currentQuestion = questions[index];
+                quizQuestion.textContent = currentQuestion.question;
+                quizOptions.forEach((button, i) => {
+                    button.textContent = currentQuestion.options[i];
+                });
+            }
+
+            quizOptions.forEach((button) => {
+                button.addEventListener('click', function () {
+                    const answer = this.textContent;
+                    if (answer === questions[quizIndex].answer) {
+                        quizResult.textContent = 'Correct!';
+                        quizResult.style.color = 'green';
+                    } else {
+                        quizResult.textContent = 'Oops! Try again.';
+                        quizResult.style.color = 'red';
+                    }
+                    nextQuestionBtn.style.display = 'block';
+                });
+            });
+
+            nextQuestionBtn.addEventListener('click', function () {
+                quizIndex = (quizIndex + 1) % questions.length;
+                showQuizQuestion(quizIndex);
+                quizResult.textContent = '';
+                nextQuestionBtn.style.display = 'none';
+            });
+
+            showQuizQuestion(quizIndex);
+        }
+
+        setupQuiz('quiz1', quiz1Questions);
+        setupQuiz('quiz2', quiz2Questions);
+    });</script>
+
+<style>
+    h1 {
+        text-align: center;
+        background-color: #ffeb3b;
+        padding: 20px;
+        border-bottom: 2px solid #333;
+    }
+
+    #quiz-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quiz {
+        text-align: center;
+        margin: 20px auto;
+        max-width: 600px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .quiz h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .quiz p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+    .quiz-option {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+        .quiz-option:hover {
+            background-color: #555;
+        }
+
+    .btn-main {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
+
+        .btn-main:hover {
+            background-color: #555;
+        }
+
+    #quiz-result {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+</style>
+
+
+
+
+
+
+    <div class="quiz" id="quiz3">
+        <h2>Level 3</h2>
+        <p id="quiz3-question"></p>
+        <button class="quiz-option" id="quiz3-option1"></button>
+        <button class="quiz-option" id="quiz3-option2"></button>
+        <button class="quiz-option" id="quiz3-option3"></button>
+        <p id="quiz3-result"></p>
+        <button id="quiz3-next-question" class="btn-main" style="display: none;">Next Question</button>
+    </div>
+
+    <div class="quiz" id="quiz4">
+        <h2>Level 4</h2>
+        <p id="quiz4-question"></p>
+        <button class="quiz-option" id="quiz4-option1"></button>
+        <button class="quiz-option" id="quiz4-option2"></button>
+        <button class="quiz-option" id="quiz4-option3"></button>
+        <p id="quiz4-result"></p>
+        <button id="quiz4-next-question" class="btn-main" style="display: none;">Next Question</button>
+    </div>
+</div>
+
+<script>document.addEventListener('DOMContentLoaded', function () {
+        const quiz1Questions = [
+            {
+                question: "What do Minions love to eat the most?",
+                options: ["Apples", "Bananas", "Carrots"],
+                answer: "Bananas"
+            },
+            {
+                question: "Who is the leader of the Minions?",
+                options: ["Kevin", "Stuart", "Bob"],
+                answer: "Kevin"
+            },
+            {
+                question: "Which Minion loves to play guitar?",
+                options: ["Kevin", "Stuart", "Dave"],
+                answer: "Stuart"
+            },
+            {
+                question: "Which Minion is the smallest and cutest?",
+                options: ["Kevin", "Bob", "Jerry"],
+                answer: "Bob"
+            }
+        ];
+
+        const quiz2Questions = [
+            {
+                question: "Who is Gru's assistant?",
+                options: ["Dr. Nefario", "Vector", "Scarlet Overkill"],
+                answer: "Dr. Nefario"
+            },
+            {
+                question: "What color are Minions?",
+                options: ["Yellow", "Green", "Blue"],
+                answer: "Yellow"
+            },
+            {
+                question: "What is the name of Gru's dog?",
+                options: ["Spike", "Kyle", "Fido"],
+                answer: "Kyle"
+            },
+            {
+                question: "What is Gru's profession?",
+                options: ["Scientist", "Supervillain", "Teacher"],
+                answer: "Supervillain"
+            }
+        ];
+
+        const quiz3Questions = [
+            {
+                question: "Who is the youngest of Gru's daughters?",
+                options: ["Margo", "Edith", "Agnes"],
+                answer: "Agnes"
+            },
+            {
+                question: "What do Minions often use as weapons?",
+                options: ["Bananas", "Gadgets", "Rocks"],
+                answer: "Gadgets"
+            },
+            {
+                question: "What shape is Gru's house?",
+                options: ["Round", "Rectangular", "Triangle"],
+                answer: "Rectangular"
+            },
+            {
+                question: "Which Minion has one eye?",
+                options: ["Kevin", "Stuart", "Bob"],
+                answer: "Stuart"
+            }
+        ];
+
+        const quiz4Questions = [
+            {
+                question: "Who is the main antagonist in 'Despicable Me 2'?",
+                options: ["El Macho", "Scarlet Overkill", "Vector"],
+                answer: "El Macho"
+            },
+            {
+                question: "What is the name of Gru's mother?",
+                options: ["Marlena", "Lucy", "Edith"],
+                answer: "Marlena"
+            },
+            {
+                question: "What do Minions turn into when they eat the PX-41 serum?",
+                options: ["Monsters", "Angels", "Super Minions"],
+                answer: "Monsters"
+            },
+            {
+                question: "What is Gru's twin brother's name?",
+                options: ["Dru", "Drew", "Druce"],
+                answer: "Dru"
+            }
+        ];
+
+        function setupQuiz(quizId, questions) {
+            let quizIndex = 0;
+            const quizQuestion = document.getElementById(`${quizId}-question`);
+            const quizOptions = document.querySelectorAll(`#${quizId} .quiz-option`);
+            const quizResult = document.getElementById(`${quizId}-result`);
+            const nextQuestionBtn = document.getElementById(`${quizId}-next-question`);
+
+            function showQuizQuestion(index) {
+                const currentQuestion = questions[index];
+                quizQuestion.textContent = currentQuestion.question;
+                quizOptions.forEach((button, i) => {
+                    button.textContent = currentQuestion.options[i];
+                });
+            }
+
+            quizOptions.forEach((button) => {
+                button.addEventListener('click', function () {
+                    const answer = this.textContent;
+                    if (answer === questions[quizIndex].answer) {
+                        quizResult.textContent = 'Correct!';
+                        quizResult.style.color = 'green';
+                    } else {
+                        quizResult.textContent = 'Oops! Try again.';
+                        quizResult.style.color = 'red';
+                    }
+                    nextQuestionBtn.style.display = 'block';
+                });
+            });
+
+            nextQuestionBtn.addEventListener('click', function () {
+                quizIndex = (quizIndex + 1) % questions.length;
+                showQuizQuestion(quizIndex);
+                quizResult.textContent = '';
+                nextQuestionBtn.style.display = 'none';
+            });
+
+            showQuizQuestion(quizIndex);
+        }
+
+        setupQuiz('quiz1', quiz1Questions);
+        setupQuiz('quiz2', quiz2Questions);
+        setupQuiz('quiz3', quiz3Questions);
+        setupQuiz('quiz4', quiz4Questions);
+    });</script>
+
+<style>
+    h1 {
+        text-align: center;
+        background-color: #ffeb3b;
+        padding: 20px;
+        border-bottom: 2px solid #333;
+    }
+
+    #quiz-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quiz {
+        text-align: center;
+        margin: 20px auto;
+        max-width: 600px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .quiz h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .quiz p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+    .quiz-option {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+        .quiz-option:hover {
+            background-color: #555;
+        }
+
+    .btn-main {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
+
+        .btn-main:hover {
+            background-color: #555;
+        }
+
+    #quiz-result {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+</style>
